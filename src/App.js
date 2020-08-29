@@ -42,7 +42,7 @@ class App extends Component {
                  autoFocus
           />
           <p>curr length: {this.state.text.length}</p>
-          <ValidationComponent text={this.state.text} />
+          <ValidationComponent length={this.state.text.length} />
           {this.state.text.split('').map((x, i) =>
               <CharComponent letter={x}
                              onclick={() => this.removeLetter(i)}
