@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import ValidationComponent from "./ValidationComponent/ValidationComponent";
+import CharComponent from "./CharComponent/CharComponent";
 
 class App extends Component {
     state = {
@@ -11,6 +12,14 @@ class App extends Component {
     updateTextHandler = event => {
         this.setState({
             text: event.target.value,
+        });
+    };
+
+    removeLetter = index => {
+        const newString = this.state.text.split('');
+        newString.splice(index, 1);
+        this.setState({
+            text: newString.join(''),
         });
     };
 
@@ -27,9 +36,18 @@ class App extends Component {
         </ol>
         <p>Hint: Keep in mind that JavaScript strings are basically arrays!</p>
 
-          <input type="text" onChange={this.updateTextHandler} />
+          <input type="text"
+                 onChange={this.updateTextHandler}
+                 autoFocus
+          />
           <p>curr length: {this.state.text.length}</p>
           <ValidationComponent text={this.state.text} />
+          {this.state.text.split('').map((x, i) =>
+              <CharComponent letter={x}
+                             onclick={() => this.removeLetter(i)}
+                             key={i}
+              />
+          )}
       </div>
     );
   }
