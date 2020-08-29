@@ -37,6 +37,7 @@ class App extends Component {
         <p>Hint: Keep in mind that JavaScript strings are basically arrays!</p>
 
           <input type="text"
+                 value={this.state.text}
                  onChange={this.updateTextHandler}
                  autoFocus
           />
